@@ -1,0 +1,351 @@
+<apex:page language="es-ES" standardController="eCC_Designation__c" extensions="eCC_EventLogView" renderAs="pdf" showHeader="false" sidebar="false" standardStylesheets="false" applyBodyTag="false" applyHtmlTag="false" title="Event History">
+        <head>
+            <style>
+                @page { 
+                @top-center {
+                    content: element(header);
+                }
+                @bottom-center {
+                    content: element(footer);
+                }
+                size:A3 portrait;
+                padding-left: 0%; 
+                padding-right: 0px;
+                padding-bottom: 50px;
+                padding-top: 40px;
+                background: white;
+                }
+                .fieldLabelStyle{
+                width: 266px; 
+                height: 19px; 
+                color: black; 
+                font-size: 15px;  
+                font-weight: 400; 
+                word-wrap: break-word;
+                font-family: Source Sans Pro!important; 
+                font-style: normal;
+                line-height: normal;
+                letter-spacing: -0.15px;
+                }
+                .parastyle {
+                background-color: #4287f5;
+                font-weight: bold;
+                color: #FFFFFF;
+                margin-top: 0;
+                margin-bottom: 0;
+                padding: 8px;
+                
+                font-size: 16px; /* Adjust the font size as desired */
+                font-family: Arial, sans-serif;
+                }
+                .headerValueStyle {
+                word-wrap: break-word;
+                white-space: pre-wrap;
+                font-family: sans-serif;
+                font-size: 20px;
+                font-weight: bold;
+                text-decoration: none;
+                unicode-bidi: normal;
+                color: black;
+                direction: ltr;
+                writing-mode: lr-tb;
+                vertical-align: middle;
+                text-align: right;
+                }
+                .headerValueStyle p {
+                margin: 5px 0;
+                }
+                div.footer {
+                display: block;
+                padding-top: 2px;
+                padding-bottom: 2px;
+                position: running(footer);
+                }
+                .countDiv {
+                text-align: right;
+                position: relative
+                }
+                .pagenumber:before {
+                content: counter(page);
+                }
+                .pagecount:before {
+                content: counter(pages);
+                }
+                .timeDiv {
+                text-align: left;
+                position: absolute;
+                }
+                .approve  {
+                border-collapse: collapse; 
+                border: 2px solid black;
+                table-layout:fixed;
+                /* page-break-inside: avoid; */
+                }
+                .approve th, .approve td {
+                    border: 1px solid black; 
+                    text-align: left;
+                    padding: 8px;
+                    overflow-wrap: break-word;
+                    word-break: break-all;
+                    /* page-break-inside: avoid; */
+                }
+                .tdComments{
+                    width: 300px!important;
+                }
+                .approve tr {
+            /*  page-break-inside: avoid; */
+                } 
+                .bold-text {
+            font-weight: bold;
+        }
+            </style>
+        </head>
+        <div class="header" style = "">
+            <div class="timeDiv" style="padding-left:16px">
+                <apex:image url="{!$Resource.eCC_WHOLogo}" width="200px"/>
+            </div>
+            <div class="headerValueStyle">
+                <p> </p>
+            <apex:outputText value="Overview Printed for user: {!$User.FirstName} {!$User.LastName}" />
+                
+            </div>
+        </div>
+        <div class="footer" style="font-size: small;">
+            <hr/>
+            <div class="timeDiv">
+                <div>{!today}</div>
+            </div>
+        <div class="countDiv">
+            <div>Page <span class="pagenumber" /> of <span class="pagecount" />
+            </div>
+        </div>
+        </div>
+        <p class="parastyle">Process Map <span style="display: inline-block; margin-left: 300px;">{!eCC_Designation__c.eCC_CCNumber__c}</span></p>
+
+        <div style="display: flex; justify-content: center; align-items: center; height: 141px; width: 640px;">
+            <!-- Designation Start -->
+            <apex:image value="{!$Resource.eCC_DesInitiation}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Initiation', NOT(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
+                <apex:image value="{!$Resource.eCC_DesFPScreening}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'FP Screening', NOT(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
+                <apex:image value="{!$Resource.eCC_DesRODrafting}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'RO Drafting', NOT(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
+                <apex:image value="{!$Resource.eCC_DesCCDrafting}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'CC Drafting', NOT(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
+                <apex:image value="{!$Resource.eCC_DesROReview}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'RO Review', NOT(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
+                <apex:image value="{!$Resource.eCC_DesFPReview}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'FP review', NOT(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
+                <apex:image value="{!$Resource.eCC_DesDueDiligenceReview}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Due Diligence Review', NOT(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
+                <apex:image value="{!$Resource.eCC_DesTechnicalCounterpartReview}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Technical Counterpart Review', NOT(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
+                <apex:image value="{!$Resource.eCC_DesDirectorReview}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Director Review', NOT(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
+                <apex:image value="{!$Resource.eCC_DesADG_DPMReview}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'ADG/DPM review', NOT(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
+                <apex:image value="{!$Resource.eCC_DesDGReview}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'DG Review', NOT(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
+                <apex:image value="{!$Resource.eCC_DesConsultationwithGovernment}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Consultation With Government', NOT(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
+                <apex:image value="{!$Resource.eCC_DesDesignationLetter}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Designation Letter', NOT(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
+                <apex:image value="{!$Resource.eCC_DesWithdrawn}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Withdrawn', NOT(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
+                <apex:image value="{!$Resource.eCC_DesArchived}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Archived', NOT(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
+            <!-- Designation End -->
+
+
+            <!-- Redesignation Start -->
+                <apex:image value="{!$Resource.eCC_RedesInitiation}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Initiation',(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
+                <apex:image value="{!$Resource.eCC_RedesFPScreening}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'FP Screening',(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
+                <apex:image value="{!$Resource.eCC_RedesRODrafting}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'RO Drafting',(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
+                <apex:image value="{!$Resource.eCC_RedesCCDrafting}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'CC Drafting',(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
+                <apex:image value="{!$Resource.eCC_RedesROReview}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'RO Review',(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
+                <apex:image value="{!$Resource.eCC_RedesFPReview}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'FP review',(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
+                <apex:image value="{!$Resource.eCC_RedesDueDiligenceReview}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Due Diligence Review',(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
+                <apex:image value="{!$Resource.eCC_RedesTechnicalCounterpartReview}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Technical Counterpart Review',(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
+                <apex:image value="{!$Resource.eCC_RedesDirectorReview}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Director Review',(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
+                <apex:image value="{!$Resource.eCC_RedesADG_DPMReview}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'ADG/DPM review',(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
+                <apex:image value="{!$Resource.eCC_RedesDesignationLetter}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Designation Letter',(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
+                <apex:image value="{!$Resource.eCC_RedesWithdrawn}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Withdrawn',(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
+                <apex:image value="{!$Resource.eCC_RedesArchived}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Archived',(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
+            <!-- Redesignation End -->
+            
+           
+          
+            
+            
+            
+            <apex:variable var="showImage" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 4, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 0, CONTAINS(eCC_Designation__c.eCC_AnnualReportStatus__c, 'Annual report due'))}"/>
+            <apex:image value="{!$Resource.eCC_ARDes4Yr1ReportRequested}" rendered="{!showImage}"/>
+        
+            <apex:variable var="showImage1" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 4, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 0, AND(CONTAINS(eCC_Designation__c.eCC_AnnualReportStatus__c, 'Pending'), eCC_Designation__c.eCC_LatestARStatus__c = 'Not Approved'))}"/>
+            <apex:variable var="showImag1" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 4, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 1, AND(OR(ISNULL(eCC_Designation__c.eCC_AnnualReportStatus__c), eCC_Designation__c.eCC_AnnualReportStatus__c = ''), eCC_Designation__c.eCC_LatestARStatus__c = 'Approved'))}"/>
+            <apex:image value="{!$Resource.eCC_ARDes4Yr1ReportSubmitted}" rendered="{!OR(showImage1,showImag1)}"/>
+
+
+            <apex:variable var="showImage2" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 4, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 1, CONTAINS(eCC_Designation__c.eCC_AnnualReportStatus__c, 'Annual report due'))}"/>
+            <apex:image value="{!$Resource.eCC_ARDes4Yr2ReportRequested}" rendered="{!showImage2}"/>
+            <apex:variable var="showImage3" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 4, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 1, AND(CONTAINS(eCC_Designation__c.eCC_AnnualReportStatus__c, 'Pending'), eCC_Designation__c.eCC_LatestARStatus__c = 'Not Approved'))}"/> 
+            <apex:variable var="showImag3" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 4, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 2, AND(OR(ISNULL(eCC_Designation__c.eCC_AnnualReportStatus__c), eCC_Designation__c.eCC_AnnualReportStatus__c = ''), eCC_Designation__c.eCC_LatestARStatus__c = 'Approved'))}"/>
+            <apex:image value="{!$Resource.eCC_ARDes4Yr2ReportSubmitted}" rendered="{!OR(showImage3,showImag3)}"/>
+
+            <apex:variable var="showImage4" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 4, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 2, CONTAINS(eCC_Designation__c.eCC_AnnualReportStatus__c, 'Annual report due'))}"/>
+            <apex:image value="{!$Resource.eCC_ARDes4Yr3ReportRequested}" rendered="{!showImage4}"/>
+            <apex:variable var="showImage5" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 4, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 2, AND(CONTAINS(eCC_Designation__c.eCC_AnnualReportStatus__c, 'Pending'), eCC_Designation__c.eCC_LatestARStatus__c = 'Not Approved'))}"/>
+            <apex:variable var="showImag5" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 4, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 3, AND(OR(ISNULL(eCC_Designation__c.eCC_AnnualReportStatus__c), eCC_Designation__c.eCC_AnnualReportStatus__c = ''), eCC_Designation__c.eCC_LatestARStatus__c = 'Approved'))}"/>
+            <apex:image value="{!$Resource.eCC_ARDes4Yr3ReportSubmitted}" rendered="{!OR(showImage5,showImag5)}"/>
+
+            <apex:variable var="showImage6" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 4, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 3, CONTAINS(eCC_Designation__c.eCC_AnnualReportStatus__c, 'Annual report due'))}"/>
+            <apex:image value="{!$Resource.eCC_ARDes4Yr4ReportRequested}" rendered="{!showImage6}"/>
+            <apex:variable var="showImage7" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 4, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 3, AND(CONTAINS(eCC_Designation__c.eCC_AnnualReportStatus__c, 'Pending'), eCC_Designation__c.eCC_LatestARStatus__c = 'Not Approved'))}"/>
+            <apex:variable var="showImag7" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 4, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 4, AND(OR(ISNULL(eCC_Designation__c.eCC_AnnualReportStatus__c), eCC_Designation__c.eCC_AnnualReportStatus__c = ''), eCC_Designation__c.eCC_LatestARStatus__c = 'Approved'))}"/>
+            <apex:image value="{!$Resource.eCC_ARDes4Yr4ReportSubmitted}" rendered="{!OR(showImage7,showImag7)}"/>
+
+
+        <apex:variable var="showImage8" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 3, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 0, CONTAINS(eCC_Designation__c.eCC_AnnualReportStatus__c, 'Annual report due'))}"/>
+            <apex:image value="{!$Resource.eCC_ARRedes3Yr1ReportRequested}" rendered="{!showImage8}"/>
+            <apex:variable var="showImage9" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 3, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 0, AND(CONTAINS(eCC_Designation__c.eCC_AnnualReportStatus__c, 'Pending'), eCC_Designation__c.eCC_LatestARStatus__c = 'Not Approved'))}"/>
+            <apex:variable var="showImag9" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 3, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 1, AND(OR(ISNULL(eCC_Designation__c.eCC_AnnualReportStatus__c), eCC_Designation__c.eCC_AnnualReportStatus__c = ''), eCC_Designation__c.eCC_LatestARStatus__c = 'Approved'))}"/>
+            <apex:image value="{!$Resource.eCC_ARRedes3Yr1ReportSubmitted}" rendered="{!OR(showImage9,showImag9)}"/>
+
+
+            <apex:variable var="showImage11" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 3, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 1, CONTAINS(eCC_Designation__c.eCC_AnnualReportStatus__c, 'Annual report due'))}"/>
+            <apex:image value="{!$Resource.eCC_ARRedes3Yr2ReportRequested}" rendered="{!showImage11}"/>
+            <apex:variable var="showImage12" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 3, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 1, AND(CONTAINS(eCC_Designation__c.eCC_AnnualReportStatus__c, 'Pending'), eCC_Designation__c.eCC_LatestARStatus__c = 'Not Approved'))}"/>
+            <apex:variable var="showImag12" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 3, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 2, AND(OR(ISNULL(eCC_Designation__c.eCC_AnnualReportStatus__c), eCC_Designation__c.eCC_AnnualReportStatus__c = ''), eCC_Designation__c.eCC_LatestARStatus__c = 'Approved'))}"/>
+            <apex:image value="{!$Resource.eCC_ARRedes3Yr2ReportSubmitted}" rendered="{!OR(showImage12,showImag12)}"/>
+
+            <apex:variable var="showImage13" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 3, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 2, CONTAINS(eCC_Designation__c.eCC_AnnualReportStatus__c, 'Annual report due'))}"/>
+            <apex:image value="{!$Resource.eCC_ARRedes3Yr3ReportRequested}" rendered="{!showImage13}"/>
+            <apex:variable var="showImage14" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 3, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 2, AND(CONTAINS(eCC_Designation__c.eCC_AnnualReportStatus__c, 'Pending'), eCC_Designation__c.eCC_LatestARStatus__c = 'Not Approved'))}"/>
+            <apex:variable var="showImag14" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 3, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 3, AND(OR(ISNULL(eCC_Designation__c.eCC_AnnualReportStatus__c), eCC_Designation__c.eCC_AnnualReportStatus__c = ''), eCC_Designation__c.eCC_LatestARStatus__c = 'Approved'))}"/>
+            <apex:image value="{!$Resource.eCC_ARRedes3Yr3ReportSubmitted}" rendered="{!OR(showImage14,showImag14)}"/>
+        
+            <apex:variable var="showImage15" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 2, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 0, CONTAINS(eCC_Designation__c.eCC_AnnualReportStatus__c, 'Annual report due'))}"/>
+            <apex:image value="{!$Resource.eCC_ARRedes2Yr1ReportRequested}" rendered="{!showImage15}"/>
+            <apex:variable var="showImage16" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 2, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 0, AND(CONTAINS(eCC_Designation__c.eCC_AnnualReportStatus__c, 'Pending'), eCC_Designation__c.eCC_LatestARStatus__c = 'Not Approved'))}"/>
+            <apex:variable var="showImag16" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 2, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 1, AND(OR(ISNULL(eCC_Designation__c.eCC_AnnualReportStatus__c), eCC_Designation__c.eCC_AnnualReportStatus__c = ''), eCC_Designation__c.eCC_LatestARStatus__c = 'Approved'))}"/>
+            <apex:image value="{!$Resource.eCC_ARRedes2Yr1ReportSubmitted}" rendered="{!OR(showImage16,showImag16)}"/>
+
+
+            <apex:variable var="showImage17" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 2, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 1, CONTAINS(eCC_Designation__c.eCC_AnnualReportStatus__c, 'Annual report due'))}"/>
+            <apex:image value="{!$Resource.eCC_ARRedes2Yr2ReportRequested}" rendered="{!showImage17}"/>
+            <apex:variable var="showImage18" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 2, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 1, AND(CONTAINS(eCC_Designation__c.eCC_AnnualReportStatus__c, 'Pending'), eCC_Designation__c.eCC_LatestARStatus__c = 'Not Approved'))}"/>
+            <apex:variable var="showImag18" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 2, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 2, AND(OR(ISNULL(eCC_Designation__c.eCC_AnnualReportStatus__c), eCC_Designation__c.eCC_AnnualReportStatus__c = ''), eCC_Designation__c.eCC_LatestARStatus__c = 'Approved'))}"/>
+            <apex:image value="{!$Resource.eCC_ARRedes2Yr2ReportSubmitted}" rendered="{!OR(showImage18,showImag18)}"/>
+
+            <apex:variable var="showImage19" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 1, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 0, CONTAINS(eCC_Designation__c.eCC_AnnualReportStatus__c, 'Annual report due'))}"/>
+            <apex:image value="{!$Resource.eCC_ARRedes1Yr1ReportRequested}" rendered="{!showImage19}"/>
+            <apex:variable var="showImage20" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 1, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 0, AND(CONTAINS(eCC_Designation__c.eCC_AnnualReportStatus__c, 'Pending'), eCC_Designation__c.eCC_LatestARStatus__c = 'Not Approved'))}"/>
+            <apex:variable var="showImag20" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 1, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 1, AND(OR(ISNULL(eCC_Designation__c.eCC_AnnualReportStatus__c), eCC_Designation__c.eCC_AnnualReportStatus__c = ''), eCC_Designation__c.eCC_LatestARStatus__c = 'Approved'))}"/>
+            <apex:image value="{!$Resource.eCC_ARRedes1Yr1ReportSubmitted}" rendered="{!OR(showImage20,showImag20)}"/>
+
+
+
+
+             <!-- Designation Collaboration Ongoing -->
+            <apex:image height="55"  width="1010" style="padding-top: 20px;" value="{!$Resource.eCC_DesCollaborationOngoing}" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Collaboration Ongoing', NOT(eCC_Designation__c.eCC_IsRedesignation__c), NOT(showImage), NOT(showImage1), NOT(showImage2), NOT(showImage3), NOT(showImage4), NOT(showImage5), NOT(showImage6), NOT(showImage7), NOT(showImage8), NOT(showImage9), NOT(showImage11), NOT(showImage12), NOT(showImage13), NOT(showImage14), NOT(showImage15), NOT(showImage16), NOT(showImage17), NOT(showImage18), NOT(showImage19), NOT(showImage20), NOT(showImag1), NOT(showImag3), NOT(showImag5), NOT(showImag7), NOT(showImag9), NOT(showImag12), NOT(showImag14), NOT(showImag16), NOT(showImag18), NOT(showImag20))}"/>
+
+
+
+            <apex:image height="111" width="1010" value="{!$Resource.eCC_RedesCollaborationOngoing}" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Collaboration Ongoing', (eCC_Designation__c.eCC_IsRedesignation__c), NOT(showImage), NOT(showImage1), NOT(showImage2), NOT(showImage3), NOT(showImage4), NOT(showImage5), NOT(showImage6), NOT(showImage7), NOT(showImage8), NOT(showImage9), NOT(showImage11), NOT(showImage12), NOT(showImage13), NOT(showImage14), NOT(showImage15), NOT(showImage16), NOT(showImage17), NOT(showImage18), NOT(showImage19), NOT(showImage20), NOT(showImag1), NOT(showImag3), NOT(showImag5), NOT(showImag7), NOT(showImag9), NOT(showImag12), NOT(showImag14), NOT(showImag16), NOT(showImag18), NOT(showImag20))}"/>
+
+        </div> 
+    <br/>
+        <p class="parastyle">Event History</p>
+        <div >
+        <table class = "approve">
+            <thead>
+                <tr>
+                    <th style="width:150px!important">Action Time</th>
+                    <th style="width:100px!important">User</th> 
+                    <th style="width:100px!important">Stage</th>
+                    <th style="width:150px!important">Action</th> 
+                    <th style="width:350px!important">Comments</th>
+                </tr>
+            </thead>
+            <tbody>
+                <apex:repeat value="{!approvalHistory}" var="objAh">
+                    <tr>  
+                        <!-- <td>{!objAh.LastModifiedDate}</td>  -->
+                    <td style="vertical-align:top"> <apex:outputText value="{0,date,dd MMM yyyy, hh:mm:ss aa z}">
+                        <apex:param value="{!objAh.LastModifiedDate}" />
+                        </apex:outputText></td>
+                        <td style="vertical-align:top"> <apex:outputText value="{!IF(objAh.eCC_ApprovedRejectedBy__r.Name =="", 'System', objAh.eCC_ApprovedRejectedBy__r.Name)}"/></td>  
+                        <td style="vertical-align:top">{!objAh.Name}</td>
+                                        
+                        
+                        <td style="vertical-align:top">
+                        <apex:variable var="statusText" value=""/>
+                        <apex:variable var="statusValue" value="{!objAh.eCC_Status__c}"/>
+                        
+                        <apex:outputPanel rendered="{!objAh.eCC_Status__c == 'Initiation'}">
+                        <apex:variable var="statusText" value="Propose a New Designation"/>
+                        </apex:outputPanel>
+                            
+                        <apex:outputPanel rendered="{!objAh.Name == 'Initiation' && objAh.eCC_Status__c == 'Submitted' && objAh.eCC_FlowAction__c == 'Submit for Approval'}">
+                        <apex:variable var="statusText" value="Submit"/>
+                        </apex:outputPanel>
+                            
+                            <apex:outputPanel rendered="{!(objAh.Name == 'FP Screening' || objAh.Name == 'FP review' || objAh.Name == 'Due Diligence Review' || objAh.Name == 'Technical Counterpart Review' || objAh.Name == 'Director Review' || objAh.Name == 'ADG/DPM review') && objAh.eCC_Status__c =='Approved' && objAh.eCC_FlowAction__c =='Approve' && objAh.eCC_Designation__r.eCC_IsRedesignation__c==false}">
+                        <apex:variable var="statusText" value="Agree"/>
+                        </apex:outputPanel>
+                            
+                        <apex:outputPanel rendered="{!(objAh.Name == 'FP Screening' || objAh.Name == 'FP review' || objAh.Name == 'Due Diligence Review' || objAh.Name == 'Technical Counterpart Review' || objAh.Name == 'Director Review') && objAh.eCC_Status__c == 'Approved' && objAh.eCC_FlowAction__c == 'Approve' && objAh.eCC_Designation__r.eCC_IsRedesignation__c == true}">
+                        <apex:variable var="statusText" value="Agree"/>
+                        </apex:outputPanel>
+                            
+                        <apex:outputPanel rendered="{!objAh.Name == 'ADG/DPM review' && objAh.eCC_Status__c == 'Approved' && objAh.eCC_FlowAction__c == 'Approve' && objAh.eCC_Designation__r.eCC_IsRedesignation__c == true}">
+                        <apex:variable var="statusText" value="Approve"/>
+                        </apex:outputPanel>
+                            <apex:outputPanel rendered="{!objAh.Name == 'DG Review' && objAh.eCC_Status__c == 'Approved' && objAh.eCC_FlowAction__c == 'Approve' && objAh.eCC_Designation__r.eCC_IsRedesignation__c == false}">
+                        <apex:variable var="statusText" value="Approve"/>
+                        </apex:outputPanel>
+                            <apex:outputPanel rendered="{!(objAh.Name == 'FP Screening' || objAh.Name == 'FP review' || objAh.Name == 'Due Diligence Review' || objAh.Name == 'Technical Counterpart Review' || objAh.Name == 'Director Review' || objAh.Name == 'ADG/DPM review') && objAh.eCC_Status__c == 'Rejected' && objAh.eCC_FlowAction__c == 'Reject' && !objAh.eCC_Designation__r.eCC_IsRedesignation__c}">
+                        <apex:variable var="statusText" value="Return"/>
+                        </apex:outputPanel>
+                            <apex:outputPanel rendered="{!(objAh.Name == 'FP Screening' || objAh.Name == 'FP review' || objAh.Name == 'Due Diligence Review' || objAh.Name == 'Technical Counterpart Review' || objAh.Name == 'Director Review') && objAh.eCC_Status__c == 'Rejected' && objAh.eCC_FlowAction__c == 'Reject' && objAh.eCC_Designation__r.eCC_IsRedesignation__c == true}">
+                        <apex:variable var="statusText" value="Return"/>
+                        </apex:outputPanel>
+                            <apex:outputPanel rendered="{!objAh.Name == 'DG Review' && objAh.eCC_Status__c == 'Rejected' && objAh.eCC_FlowAction__c == 'Reject' && !objAh.eCC_Designation__r.eCC_IsRedesignation__c}">
+                        <apex:variable var="statusText" value="Reject"/>
+                        </apex:outputPanel>
+                            <apex:outputPanel rendered="{!objAh.Name == 'ADG/DPM review' && objAh.eCC_Status__c == 'Rejected' && objAh.eCC_FlowAction__c == 'Reject' && objAh.eCC_Designation__r.eCC_IsRedesignation__c}">
+                        <apex:variable var="statusText" value="Reject"/>
+                        </apex:outputPanel>
+                            <apex:outputPanel rendered="{!objAh.Name == 'RO Drafting' && objAh.eCC_Status__c == 'Submitted' && objAh.eCC_FlowAction__c == 'Send to CC'}">
+                        <apex:variable var="statusText" value="Send to CC"/>
+                        </apex:outputPanel>
+                            <apex:outputPanel rendered="{!objAh.Name == 'CC Drafting' && objAh.eCC_Status__c == 'Submitted' && objAh.eCC_FlowAction__c == 'Send to RO'}">
+                        <apex:variable var="statusText" value="Send to RO"/>
+                        </apex:outputPanel>
+                            <apex:outputPanel rendered="{!objAh.Name == 'RO Review' && objAh.eCC_Status__c == 'Submitted' && objAh.eCC_FlowAction__c == 'Send to CC'}">
+                        <apex:variable var="statusText" value="Send to CC"/>
+                        </apex:outputPanel>
+                            <apex:outputPanel rendered="{!objAh.Name == 'RO Review' && objAh.eCC_Status__c == 'Submitted' && objAh.eCC_FlowAction__c == 'Submit for Approval'}">
+                        <apex:variable var="statusText" value="Submit"/>
+                        </apex:outputPanel>
+                            <apex:outputPanel rendered="{!objAh.Name == 'FP review' && objAh.eCC_Status__c == 'Rejected' && objAh.eCC_FlowAction__c == 'Return After DD'}">
+                        <apex:variable var="statusText" value="Return after DD"/>
+                        </apex:outputPanel>
+                            <apex:outputPanel rendered="{!objAh.eCC_Status__c == 'Submitted' && objAh.eCC_FlowAction__c == 'Respond to Reviewer'}">
+                        <apex:variable var="statusText" value="Respond to reviewer"/>
+                        </apex:outputPanel>
+                            <apex:outputPanel rendered="{!objAh.Name == 'Consultation with Government' && objAh.eCC_Status__c == 'Consultation Letter Submitted' && objAh.eCC_FlowAction__c == 'Upload Consultation Letter'}">
+                        <apex:variable var="statusText" value="Upload Consultation Letter"/>
+                        </apex:outputPanel>
+                            <apex:outputPanel rendered="{!objAh.Name == 'Designation Letter' && objAh.eCC_Status__c == 'Uploaded Designation Letter' && objAh.eCC_FlowAction__c == 'Upload Designation Letter'}">
+                        <apex:variable var="statusText" value="Upload Designation Letter"/>
+                        </apex:outputPanel>
+                            <apex:outputPanel rendered="{!objAh.eCC_Status__c == 'Resubmitted-Stage Change by GFP' && objAh.eCC_FlowAction__c == 'Change Stage'}">
+                        <apex:variable var="statusText" value="Change Stage to {!objAh.eCC_AssignTo__c}" />
+                        </apex:outputPanel>
+                            <apex:outputPanel rendered="{!objAh.eCC_Status__c =='File_Add'}">
+                        <apex:variable var="statusText" value="File-Add"/>
+                        </apex:outputPanel>
+                            <apex:outputPanel rendered="{!objAh.eCC_Status__c =='File_Delete'}">
+                        <apex:variable var="statusText" value="File-Delete"/>
+                        </apex:outputPanel>
+                            <apex:outputPanel rendered="{!objAh.eCC_Status__c =='File_Replace'}">
+                        <apex:variable var="statusText" value="File-Replace"/>
+                        </apex:outputPanel> 
+                        
+                            <apex:outputText value="{!IF(statusText=="", objAh.eCC_Status__c, statusText)}"/>
+                            
+                        </td>
+                        <td style="white-space: pre-wrap; word-wrap: break-word; word-break: break-all;">{!objAh.eCC_CommentsLong__c}</td> <!-- style="white-space: pre-wrap; word-wrap: break-word;" --> <!-- style = "overflow: auto;" -->
+                    </tr>
+                </apex:repeat>
+            </tbody>
+        </table>
+            
+        </div>
+    </apex:page>
