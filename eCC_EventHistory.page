@@ -162,17 +162,27 @@
           
             
             
-            
-            <apex:variable var="showImage" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 4, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 0, CONTAINS(eCC_Designation__c.eCC_AnnualReportStatus__c, 'Annual report due'))}"/>
-            <apex:image value="{!$Resource.eCC_ARDes4Yr1ReportRequested}" rendered="{!showImage}"/>
-        
+            <!-- 4 year Designations start -->
+            <!-- AR1 requested -->
+            <apex:variable var="showImage" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 4, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 0, CONTAINS(eCC_Designation__c.eCC_AnnualReportStatus__c, 'Annual Report due'))}"/>
+            <apex:outputPanel rendered="{!showImage}">
+                <div style="padding-top: 20px; ">
+                    <apex:image height="55"  width="1010" value="{!$Resource.eCC_ARDes4Yr1ReportRequested}" />
+                </div>
+            </apex:outputPanel>
+            <!-- AR1 requested end -->
+
+            <!-- AR1 submitted start -->
             <apex:variable var="showImage1" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 4, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 0, AND(CONTAINS(eCC_Designation__c.eCC_AnnualReportStatus__c, 'Pending'), eCC_Designation__c.eCC_LatestARStatus__c = 'Not Approved'))}"/>
             <apex:variable var="showImag1" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 4, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 1, AND(OR(ISNULL(eCC_Designation__c.eCC_AnnualReportStatus__c), eCC_Designation__c.eCC_AnnualReportStatus__c = ''), eCC_Designation__c.eCC_LatestARStatus__c = 'Approved'))}"/>
-            <apex:image value="{!$Resource.eCC_ARDes4Yr1ReportSubmitted}" rendered="{!OR(showImage1,showImag1)}"/>
+            <apex:image style="padding-top: 20px;" height="55"  width="1010" value="{!$Resource.eCC_ARDes4Yr1ReportSubmitted}" rendered="{!OR(showImage1,showImag1)}"/>
+            <!-- AR1 submitted end -->
 
-
-            <apex:variable var="showImage2" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 4, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 1, CONTAINS(eCC_Designation__c.eCC_AnnualReportStatus__c, 'Annual report due'))}"/>
-            <apex:image value="{!$Resource.eCC_ARDes4Yr2ReportRequested}" rendered="{!showImage2}"/>
+            <!-- AR2 requested start -->
+            <apex:variable var="showImage2" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 4, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 1, CONTAINS(eCC_Designation__c.eCC_AnnualReportStatus__c, 'Annual Report due'))}"/>
+            <apex:image style="padding-top: 20px;" height="55"  width="1010" value="{!$Resource.eCC_ARDes4Yr2ReportRequested}" rendered="{!showImage2}"/>
+            <!-- AR2 requested end -->
+            
             <apex:variable var="showImage3" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 4, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 1, AND(CONTAINS(eCC_Designation__c.eCC_AnnualReportStatus__c, 'Pending'), eCC_Designation__c.eCC_LatestARStatus__c = 'Not Approved'))}"/> 
             <apex:variable var="showImag3" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 4, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 2, AND(OR(ISNULL(eCC_Designation__c.eCC_AnnualReportStatus__c), eCC_Designation__c.eCC_AnnualReportStatus__c = ''), eCC_Designation__c.eCC_LatestARStatus__c = 'Approved'))}"/>
             <apex:image value="{!$Resource.eCC_ARDes4Yr2ReportSubmitted}" rendered="{!OR(showImage3,showImag3)}"/>
@@ -188,9 +198,10 @@
             <apex:variable var="showImage7" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 4, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 3, AND(CONTAINS(eCC_Designation__c.eCC_AnnualReportStatus__c, 'Pending'), eCC_Designation__c.eCC_LatestARStatus__c = 'Not Approved'))}"/>
             <apex:variable var="showImag7" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 4, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 4, AND(OR(ISNULL(eCC_Designation__c.eCC_AnnualReportStatus__c), eCC_Designation__c.eCC_AnnualReportStatus__c = ''), eCC_Designation__c.eCC_LatestARStatus__c = 'Approved'))}"/>
             <apex:image value="{!$Resource.eCC_ARDes4Yr4ReportSubmitted}" rendered="{!OR(showImage7,showImag7)}"/>
+            <!-- 4 year Designations End -->
 
-
-        <apex:variable var="showImage8" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 3, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 0, CONTAINS(eCC_Designation__c.eCC_AnnualReportStatus__c, 'Annual report due'))}"/>
+            <!-- 3 Year start -->
+            <apex:variable var="showImage8" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 3, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 0, CONTAINS(eCC_Designation__c.eCC_AnnualReportStatus__c, 'Annual report due'))}"/>
             <apex:image value="{!$Resource.eCC_ARRedes3Yr1ReportRequested}" rendered="{!showImage8}"/>
             <apex:variable var="showImage9" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 3, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 0, AND(CONTAINS(eCC_Designation__c.eCC_AnnualReportStatus__c, 'Pending'), eCC_Designation__c.eCC_LatestARStatus__c = 'Not Approved'))}"/>
             <apex:variable var="showImag9" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 3, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 1, AND(OR(ISNULL(eCC_Designation__c.eCC_AnnualReportStatus__c), eCC_Designation__c.eCC_AnnualReportStatus__c = ''), eCC_Designation__c.eCC_LatestARStatus__c = 'Approved'))}"/>
@@ -208,35 +219,76 @@
             <apex:variable var="showImage14" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 3, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 2, AND(CONTAINS(eCC_Designation__c.eCC_AnnualReportStatus__c, 'Pending'), eCC_Designation__c.eCC_LatestARStatus__c = 'Not Approved'))}"/>
             <apex:variable var="showImag14" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 3, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 3, AND(OR(ISNULL(eCC_Designation__c.eCC_AnnualReportStatus__c), eCC_Designation__c.eCC_AnnualReportStatus__c = ''), eCC_Designation__c.eCC_LatestARStatus__c = 'Approved'))}"/>
             <apex:image value="{!$Resource.eCC_ARRedes3Yr3ReportSubmitted}" rendered="{!OR(showImage14,showImag14)}"/>
-        
+            <!-- 3 Year End -->
+            
+
+
+            <!-- 2 Year start -->
             <apex:variable var="showImage15" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 2, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 0, CONTAINS(eCC_Designation__c.eCC_AnnualReportStatus__c, 'Annual report due'))}"/>
             <apex:image value="{!$Resource.eCC_ARRedes2Yr1ReportRequested}" rendered="{!showImage15}"/>
             <apex:variable var="showImage16" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 2, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 0, AND(CONTAINS(eCC_Designation__c.eCC_AnnualReportStatus__c, 'Pending'), eCC_Designation__c.eCC_LatestARStatus__c = 'Not Approved'))}"/>
             <apex:variable var="showImag16" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 2, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 1, AND(OR(ISNULL(eCC_Designation__c.eCC_AnnualReportStatus__c), eCC_Designation__c.eCC_AnnualReportStatus__c = ''), eCC_Designation__c.eCC_LatestARStatus__c = 'Approved'))}"/>
             <apex:image value="{!$Resource.eCC_ARRedes2Yr1ReportSubmitted}" rendered="{!OR(showImage16,showImag16)}"/>
-
-
             <apex:variable var="showImage17" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 2, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 1, CONTAINS(eCC_Designation__c.eCC_AnnualReportStatus__c, 'Annual report due'))}"/>
             <apex:image value="{!$Resource.eCC_ARRedes2Yr2ReportRequested}" rendered="{!showImage17}"/>
             <apex:variable var="showImage18" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 2, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 1, AND(CONTAINS(eCC_Designation__c.eCC_AnnualReportStatus__c, 'Pending'), eCC_Designation__c.eCC_LatestARStatus__c = 'Not Approved'))}"/>
             <apex:variable var="showImag18" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 2, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 2, AND(OR(ISNULL(eCC_Designation__c.eCC_AnnualReportStatus__c), eCC_Designation__c.eCC_AnnualReportStatus__c = ''), eCC_Designation__c.eCC_LatestARStatus__c = 'Approved'))}"/>
             <apex:image value="{!$Resource.eCC_ARRedes2Yr2ReportSubmitted}" rendered="{!OR(showImage18,showImag18)}"/>
+            <!-- 2 Year End -->
+            
 
+            <!-- 1 year start -->
             <apex:variable var="showImage19" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 1, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 0, CONTAINS(eCC_Designation__c.eCC_AnnualReportStatus__c, 'Annual report due'))}"/>
             <apex:image value="{!$Resource.eCC_ARRedes1Yr1ReportRequested}" rendered="{!showImage19}"/>
             <apex:variable var="showImage20" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 1, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 0, AND(CONTAINS(eCC_Designation__c.eCC_AnnualReportStatus__c, 'Pending'), eCC_Designation__c.eCC_LatestARStatus__c = 'Not Approved'))}"/>
             <apex:variable var="showImag20" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 1, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 1, AND(OR(ISNULL(eCC_Designation__c.eCC_AnnualReportStatus__c), eCC_Designation__c.eCC_AnnualReportStatus__c = ''), eCC_Designation__c.eCC_LatestARStatus__c = 'Approved'))}"/>
             <apex:image value="{!$Resource.eCC_ARRedes1Yr1ReportSubmitted}" rendered="{!OR(showImage20,showImag20)}"/>
+            <!-- 1 year End -->
 
 
 
 
-             <!-- Designation Collaboration Ongoing -->
+             <!-- Designation Collaboration Ongoing Image -->
+              <!-- delete this -->
+              <apex:outputText value="
+                    showImage: {!showImage} | 
+                    showImage1: {!showImage1} | 
+                    showImage2: {!showImage2} | 
+                    showImage3: {!showImage3} | 
+                    showImage4: {!showImage4} | 
+                    showImage5: {!showImage5} | 
+                    showImage6: {!showImage6} | 
+                    showImage7: {!showImage7} | 
+                    showImage8: {!showImage8} | 
+                    showImage9: {!showImage9} | 
+                    showImage11: {!showImage11} | 
+                    showImage12: {!showImage12} | 
+                    showImage13: {!showImage13} | 
+                    showImage14: {!showImage14} | 
+                    showImage15: {!showImage15} | 
+                    showImage16: {!showImage16} | 
+                    showImage17: {!showImage17} | 
+                    showImage18: {!showImage18} | 
+                    showImage19: {!showImage19} | 
+                    showImage20: {!showImage20} | 
+                    showImag1: {!showImag1} | 
+                    showImag3: {!showImag3} | 
+                    showImag5: {!showImag5} | 
+                    showImag7: {!showImag7} | 
+                    showImag9: {!showImag9} | 
+                    showImag12: {!showImag12} | 
+                    showImag14: {!showImag14} | 
+                    showImag16: {!showImag16} | 
+                    showImag18: {!showImag18} | 
+                    showImag20: {!showImag20}
+                " />
+
+              <!-- delete this -->
             <apex:image height="55"  width="1010" style="padding-top: 20px;" value="{!$Resource.eCC_DesCollaborationOngoing}" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Collaboration Ongoing', NOT(eCC_Designation__c.eCC_IsRedesignation__c), NOT(showImage), NOT(showImage1), NOT(showImage2), NOT(showImage3), NOT(showImage4), NOT(showImage5), NOT(showImage6), NOT(showImage7), NOT(showImage8), NOT(showImage9), NOT(showImage11), NOT(showImage12), NOT(showImage13), NOT(showImage14), NOT(showImage15), NOT(showImage16), NOT(showImage17), NOT(showImage18), NOT(showImage19), NOT(showImage20), NOT(showImag1), NOT(showImag3), NOT(showImag5), NOT(showImag7), NOT(showImag9), NOT(showImag12), NOT(showImag14), NOT(showImag16), NOT(showImag18), NOT(showImag20))}"/>
 
 
-
-            <apex:image height="111" width="1010" value="{!$Resource.eCC_RedesCollaborationOngoing}" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Collaboration Ongoing', (eCC_Designation__c.eCC_IsRedesignation__c), NOT(showImage), NOT(showImage1), NOT(showImage2), NOT(showImage3), NOT(showImage4), NOT(showImage5), NOT(showImage6), NOT(showImage7), NOT(showImage8), NOT(showImage9), NOT(showImage11), NOT(showImage12), NOT(showImage13), NOT(showImage14), NOT(showImage15), NOT(showImage16), NOT(showImage17), NOT(showImage18), NOT(showImage19), NOT(showImage20), NOT(showImag1), NOT(showImag3), NOT(showImag5), NOT(showImag7), NOT(showImag9), NOT(showImag12), NOT(showImag14), NOT(showImag16), NOT(showImag18), NOT(showImag20))}"/>
+            <!-- ReDesignation(4 years) Collaboration Ongoing Image -->
+            <apex:image height="55" width="1010" style="padding-top: 20px;" value="{!$Resource.eCC_RedesCollaborationOngoing}" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Collaboration Ongoing', (eCC_Designation__c.eCC_IsRedesignation__c), NOT(showImage), NOT(showImage1), NOT(showImage2), NOT(showImage3), NOT(showImage4), NOT(showImage5), NOT(showImage6), NOT(showImage7), NOT(showImage8), NOT(showImage9), NOT(showImage11), NOT(showImage12), NOT(showImage13), NOT(showImage14), NOT(showImage15), NOT(showImage16), NOT(showImage17), NOT(showImage18), NOT(showImage19), NOT(showImage20), NOT(showImag1), NOT(showImag3), NOT(showImag5), NOT(showImag7), NOT(showImag9), NOT(showImag12), NOT(showImag14), NOT(showImag16), NOT(showImag18), NOT(showImag20))}"/>
 
         </div> 
     <br/>
