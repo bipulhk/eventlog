@@ -126,24 +126,39 @@
             <!-- Designation Start -->
             <apex:image value="{!$Resource.eCC_DesInitiation}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Initiation', NOT(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
                 <apex:image value="{!$Resource.eCC_DesFPScreening}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'FP Screening', NOT(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
-                <apex:image value="{!$Resource.eCC_DesRODrafting}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'RO Drafting', NOT(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
-                <apex:image value="{!$Resource.eCC_DesCCDrafting}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'CC Drafting', NOT(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
-                <apex:image value="{!$Resource.eCC_DesROReview}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'RO Review', NOT(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
-                <apex:image value="{!$Resource.eCC_DesFPReview}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'FP review', NOT(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
-                <apex:image value="{!$Resource.eCC_DesDueDiligenceReview}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Due Diligence Review', NOT(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
-                <apex:image value="{!$Resource.eCC_DesTechnicalCounterpartReview}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Technical Counterpart Review', NOT(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
-                <apex:image value="{!$Resource.eCC_DesDirectorReview}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Director Review', NOT(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
-                <apex:image value="{!$Resource.eCC_DesADG_DPMReview}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'ADG/DPM review', NOT(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
-                <apex:image value="{!$Resource.eCC_DesDGReview}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'DG Review', NOT(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
-                <apex:image value="{!$Resource.eCC_DesConsultationwithGovernment}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Consultation With Government', NOT(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
-                <apex:image value="{!$Resource.eCC_DesDesignationLetter}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Designation Letter', NOT(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
-                <apex:image value="{!$Resource.eCC_DesWithdrawn}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Withdrawn', NOT(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
+                <apex:image value="{!$Resource.eCC_DesRODrafting}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'RO Drafting',eCC_Designation__c.eCC_Status__c != 'Withdrawn',  NOT(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
+                <apex:image value="{!$Resource.eCC_DesCCDrafting}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'CC Drafting',eCC_Designation__c.eCC_Status__c != 'Withdrawn', NOT(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
+                <apex:image value="{!$Resource.eCC_DesROReview}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'RO Review',eCC_Designation__c.eCC_Status__c != 'Withdrawn', NOT(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
+                <apex:image value="{!$Resource.eCC_DesFPReview}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'FP review',eCC_Designation__c.eCC_Status__c != 'Withdrawn', NOT(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
+                <apex:image value="{!$Resource.eCC_DesDueDiligenceReview}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Due Diligence Review',eCC_Designation__c.eCC_Status__c != 'Withdrawn', NOT(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
+                <apex:image value="{!$Resource.eCC_DesTechnicalCounterpartReview}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Technical Counterpart Review',eCC_Designation__c.eCC_Status__c != 'Withdrawn', NOT(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
+                <apex:image value="{!$Resource.eCC_DesDirectorReview}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Director Review',eCC_Designation__c.eCC_Status__c != 'Withdrawn', NOT(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
+                <apex:image value="{!$Resource.eCC_DesADG_DPMReview}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'ADG/DPM review',eCC_Designation__c.eCC_Status__c != 'Withdrawn', NOT(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
+                <apex:image value="{!$Resource.eCC_DesDGReview}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'DG Review',eCC_Designation__c.eCC_Status__c != 'Withdrawn', NOT(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
+                <apex:image value="{!$Resource.eCC_DesConsultationwithGovernment}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Consultation With Government',eCC_Designation__c.eCC_Status__c != 'Withdrawn', NOT(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
+                <apex:image value="{!$Resource.eCC_DesDesignationLetter}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Designation Letter',eCC_Designation__c.eCC_Status__c != 'Withdrawn', NOT(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
+                <!-- <apex:image value="{!$Resource.eCC_DesWithdrawn}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Withdrawn', NOT(eCC_Designation__c.eCC_IsRedesignation__c))}"/> -->
                 <apex:image value="{!$Resource.eCC_DesArchived}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Archived', NOT(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
             <!-- Designation End -->
-            <!-- Designation Withdrawn Start-->
-                
+             <!-- Designation Withdrawn Start -->
+                <apex:image value="{!$Resource.eCC_DesInitiationWithdrawn}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Withdrawn',eCC_Designation__c.eCC_StateBeforeWithdraw__c = 'Initiation' , NOT(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
+                <apex:image value="{!$Resource.eCC_DesFPScreeningWithdrawn}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Withdrawn',eCC_Designation__c.eCC_StateBeforeWithdraw__c = 'FP Screening' , NOT(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
+                <apex:image value="{!$Resource.eCC_DesRODraftingWithdrawn}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Withdrawn', eCC_Designation__c.eCC_StateBeforeWithdraw__c == 'RO Drafting', NOT(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
+                <apex:image value="{!$Resource.eCC_DesCCDraftingWithdrawn}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Withdrawn', eCC_Designation__c.eCC_StateBeforeWithdraw__c == 'CC Drafting', NOT(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
+                <apex:image value="{!$Resource.eCC_DesROReviewWithdrawn}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Withdrawn', eCC_Designation__c.eCC_StateBeforeWithdraw__c == 'RO Review', NOT(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
+                <apex:image value="{!$Resource.eCC_DesFPReviewWithdrawn}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Withdrawn', eCC_Designation__c.eCC_StateBeforeWithdraw__c == 'FP review', NOT(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
+                <apex:image value="{!$Resource.eCC_DesDueDiligenceReviewWithdrawn}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Withdrawn', eCC_Designation__c.eCC_StateBeforeWithdraw__c == 'Due Diligence Review', NOT(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
+                <apex:image value="{!$Resource.eCC_DesTechnicalCounterpartReviewWithdrawn}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Withdrawn', eCC_Designation__c.eCC_StateBeforeWithdraw__c == 'Technical Counterpart Review', NOT(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
+                <apex:image value="{!$Resource.eCC_DesDirectorReviewWithdrawn}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Withdrawn', eCC_Designation__c.eCC_StateBeforeWithdraw__c == 'Director Review', NOT(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
+                <apex:image value="{!$Resource.eCC_DesADG_DPMReviewWithdrawn}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Withdrawn', eCC_Designation__c.eCC_StateBeforeWithdraw__c == 'ADG/DPM review', NOT(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
+                <apex:image value="{!$Resource.eCC_DesDGReviewWithdrawn}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Withdrawn',eCC_Designation__c.eCC_StateBeforeWithdraw__c == 'DG Review', NOT(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
 
-            <!-- Designation Withdrawn End-->
+            <!-- Designation Withdrawn End -->
+            
+            
+
+
+            
 
 
 
@@ -159,9 +174,21 @@
                 <apex:image value="{!$Resource.eCC_RedesDirectorReview}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Director Review',(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
                 <apex:image value="{!$Resource.eCC_RedesADG_DPMReview}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'ADG/DPM review',(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
                 <apex:image value="{!$Resource.eCC_RedesDesignationLetter}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Designation Letter',(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
-                <apex:image value="{!$Resource.eCC_RedesWithdrawn}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Withdrawn',(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
-                <apex:image value="{!$Resource.eCC_RedesArchived}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Archived',(eCC_Designation__c.eCC_IsRedesignation__c))}"/>
+                <!-- <apex:image value="{!$Resource.eCC_RedesWithdrawn}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Withdrawn',(eCC_Designation__c.eCC_IsRedesignation__c))}"/> -->
+                <!-- <apex:image value="{!$Resource.eCC_RedesArchived}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Archived',(eCC_Designation__c.eCC_IsRedesignation__c))}"/> -->
             <!-- Redesignation End -->
+             <!-- Redesignation Under review Withdrawn start -->
+                <apex:image value="{!$Resource.eCC_RedesInitiationWithdrawn}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Withdrawn',eCC_Designation__c.eCC_StateBeforeWithdraw__c = 'Initiation' , eCC_Designation__c.eCC_IsRedesignation__c)}"/>
+                <apex:image value="{!$Resource.eCC_RedesFPScreeningWithdrawn}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Withdrawn',eCC_Designation__c.eCC_StateBeforeWithdraw__c = 'FP Screening' , eCC_Designation__c.eCC_IsRedesignation__c)}"/>
+                <apex:image value="{!$Resource.eCC_RedesRODraftingWithdrawn}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Withdrawn', eCC_Designation__c.eCC_StateBeforeWithdraw__c == 'RO Drafting', eCC_Designation__c.eCC_IsRedesignation__c)}"/>
+                <apex:image value="{!$Resource.eCC_RedesCCDraftingWithdrawn}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Withdrawn', eCC_Designation__c.eCC_StateBeforeWithdraw__c == 'CC Drafting', eCC_Designation__c.eCC_IsRedesignation__c)}"/>
+                <apex:image value="{!$Resource.eCC_RedesROReviewWithdrawn}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Withdrawn', eCC_Designation__c.eCC_StateBeforeWithdraw__c == 'RO Review', eCC_Designation__c.eCC_IsRedesignation__c)}"/>
+                <apex:image value="{!$Resource.eCC_RedesFPReviewWithdrawn}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Withdrawn', eCC_Designation__c.eCC_StateBeforeWithdraw__c == 'FP review', eCC_Designation__c.eCC_IsRedesignation__c)}"/>
+                <apex:image value="{!$Resource.eCC_RedesDueDiligenceReviewWithdrawn}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Withdrawn', eCC_Designation__c.eCC_StateBeforeWithdraw__c == 'Due Diligence Review', eCC_Designation__c.eCC_IsRedesignation__c)}"/>
+                <apex:image value="{!$Resource.eCC_RedesTechnicalCounterpartReviewWithdrawn}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Withdrawn', eCC_Designation__c.eCC_StateBeforeWithdraw__c == 'Technical Counterpart Review', eCC_Designation__c.eCC_IsRedesignation__c)}"/>
+                <apex:image value="{!$Resource.eCC_RedesDirectorReviewWithdrawn}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Withdrawn', eCC_Designation__c.eCC_StateBeforeWithdraw__c == 'Director Review', eCC_Designation__c.eCC_IsRedesignation__c)}"/>
+                <apex:image value="{!$Resource.eCC_RedesADG_DPMReviewWithdrawn}" height="111" width="1010" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Withdrawn', eCC_Designation__c.eCC_StateBeforeWithdraw__c == 'ADG/DPM review', eCC_Designation__c.eCC_IsRedesignation__c)}"/>
+            <!-- Redesignation Under review Withdrawn End -->
             
            
           
@@ -178,10 +205,17 @@
             <!-- AR1 requested end -->
 
             <!-- AR1 submitted start -->
-            <apex:variable var="showImage1" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 4, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 0, AND(CONTAINS(eCC_Designation__c.eCC_AnnualReportStatus__c, 'Pending'), eCC_Designation__c.eCC_LatestARStatus__c = 'Not Approved'))}"/>
-            <apex:variable var="showImag1" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 4, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 1, AND(OR(ISNULL(eCC_Designation__c.eCC_AnnualReportStatus__c), eCC_Designation__c.eCC_AnnualReportStatus__c = ''), eCC_Designation__c.eCC_LatestARStatus__c = 'Approved'))}"/>
-            <apex:image style="padding-top: 20px;" height="55"  width="1010" value="{!$Resource.eCC_ARDes4Yr1ReportSubmitted}" rendered="{!OR(showImage1,showImag1)}"/>
+                <apex:variable var="showImage1" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 4, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 0, AND(CONTAINS(eCC_Designation__c.eCC_AnnualReportStatus__c, 'Pending'),eCC_Designation__c.eCC_Status__c = 'Collaboration Ongoing', eCC_Designation__c.eCC_LatestARStatus__c = 'Not Approved'))}"/>
+                <apex:variable var="showImag1" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 4, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 1, AND(OR(ISNULL(eCC_Designation__c.eCC_AnnualReportStatus__c), eCC_Designation__c.eCC_AnnualReportStatus__c = ''),eCC_Designation__c.eCC_Status__c = 'Collaboration Ongoing', eCC_Designation__c.eCC_LatestARStatus__c = 'Approved'))}"/>
+                <apex:image style="padding-top: 20px;" height="55"  width="1010" value="{!$Resource.eCC_ARDes4Yr1ReportSubmitted}" rendered="{!OR(showImage1,showImag1)}"/>
             <!-- AR1 submitted end -->
+            <!-- AR1 Submitted GFP Terminated Start -->
+                <apex:variable var="showImage1" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 4, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 0, AND(CONTAINS(eCC_Designation__c.eCC_AnnualReportStatus__c, 'Pending'), eCC_Designation__c.eCC_Status__c = 'Expired', eCC_Designation__c.eCC_LatestARStatus__c = 'Not Approved'))}"/>
+                <apex:variable var="showImag1" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 4, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 1, AND(OR(ISNULL(eCC_Designation__c.eCC_AnnualReportStatus__c),eCC_Designation__c.eCC_Status__c = 'Expired', eCC_Designation__c.eCC_AnnualReportStatus__c = ''), eCC_Designation__c.eCC_LatestARStatus__c = 'Approved'))}"/>
+                <apex:image style="padding-top: 20px;" height="55"  width="1010" value="{!$Resource.eCC_ARDes4Yr1ReportSubmittedTeminate}" rendered="{!OR(showImage1,showImag1)}"/>
+            <!-- AR1 Submitted GFP Terminated End -->
+
+
 
             <!-- AR2 requested start -->
             <apex:variable var="showImage2" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 4, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 1, CONTAINS(eCC_Designation__c.eCC_AnnualReportStatus__c, 'Annual Report due'))}"/>
@@ -208,7 +242,6 @@
             <!-- 4 year Designations End -->
 
             <!-- 3 Year start -->
-
             <apex:variable var="showImage8" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 3, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 0, CONTAINS(eCC_Designation__c.eCC_AnnualReportStatus__c, 'Annual Report due'))}"/>
             <apex:image style="padding-top: 20px;" height="55"  width="1010" value="{!$Resource.eCC_ARRedes3Yr1ReportRequested}" rendered="{!showImage8}"/>
             <apex:variable var="showImage9" value="{!AND(eCC_Designation__c.eCC_NumberOfYearsProposed__c = 3, eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 0, AND(CONTAINS(eCC_Designation__c.eCC_AnnualReportStatus__c, 'Pending'), eCC_Designation__c.eCC_LatestARStatus__c = 'Not Approved'))}"/>
@@ -256,7 +289,6 @@
 
 
 
-             <!-- Designation Collaboration Ongoing Images -->
               <!-- DEBUG HELPER started -->
               <apex:outputText value="
                     showImage: {!showImage} | 
@@ -291,11 +323,15 @@
                     showImag20: {!showImag20}
                 " />
               <!-- DEBUG HELPER end -->
+            <!-- Designation Collaboration Ongoing Images -->
             <apex:image height="55"  width="1010" style="padding-top: 20px;" value="{!$Resource.eCC_DesCollaborationOngoing}" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Collaboration Ongoing', NOT(eCC_Designation__c.eCC_IsRedesignation__c), NOT(showImage), NOT(showImage1), NOT(showImage2), NOT(showImage3), NOT(showImage4), NOT(showImage5), NOT(showImage6), NOT(showImage7), NOT(showImage8), NOT(showImage9), NOT(showImage11), NOT(showImage12), NOT(showImage13), NOT(showImage14), NOT(showImage15), NOT(showImage16), NOT(showImage17), NOT(showImage18), NOT(showImage19), NOT(showImage20), NOT(showImag1), NOT(showImag3), NOT(showImag5), NOT(showImag7), NOT(showImag9), NOT(showImag12), NOT(showImag14), NOT(showImag16), NOT(showImag18), NOT(showImag20))}"/>
+            <!-- Designation CC Ongoing GFP early Terminate -->
+            <apex:image height="55"  width="1010" style="padding-top: 20px;" value="{!$Resource.eCC_DesCCOngoingGFPearlyTerminate}" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Expired', NOT(eCC_Designation__c.eCC_IsRedesignation__c), eCC_Designation__c.eCC_DesignationTerminated__c,eCC_Designation__c.eCC_LastAnnualReportApprovedVersion__c = 0,  NOT(showImage), NOT(showImage1), NOT(showImage2), NOT(showImage3), NOT(showImage4), NOT(showImage5), NOT(showImage6), NOT(showImage7), NOT(showImage8), NOT(showImage9), NOT(showImage11), NOT(showImage12), NOT(showImage13), NOT(showImage14), NOT(showImage15), NOT(showImage16), NOT(showImage17), NOT(showImage18), NOT(showImage19), NOT(showImage20), NOT(showImag1), NOT(showImag3), NOT(showImag5), NOT(showImag7), NOT(showImag9), NOT(showImag12), NOT(showImag14), NOT(showImag16), NOT(showImag18), NOT(showImag20))}"/>
 
 
             <!-- ReDesignation(4 years) Collaboration Ongoing Image -->
             <apex:image height="55" width="1010" style="padding-top: 20px;" value="{!$Resource.eCC_RedesCollaborationOngoing4Yr}" rendered="{!AND(eCC_Designation__c.eCC_Status__c == 'Collaboration Ongoing', (eCC_Designation__c.eCC_IsRedesignation__c),eCC_Designation__c.eCC_NumberOfYearsProposed__c == 4, NOT(showImage), NOT(showImage1), NOT(showImage2), NOT(showImage3), NOT(showImage4), NOT(showImage5), NOT(showImage6), NOT(showImage7), NOT(showImage8), NOT(showImage9), NOT(showImage11), NOT(showImage12), NOT(showImage13), NOT(showImage14), NOT(showImage15), NOT(showImage16), NOT(showImage17), NOT(showImage18), NOT(showImage19), NOT(showImage20), NOT(showImag1), NOT(showImag3), NOT(showImag5), NOT(showImag7), NOT(showImag9), NOT(showImag12), NOT(showImag14), NOT(showImag16), NOT(showImag18), NOT(showImag20))}"/>
+            
             <!-- ReDesignation (3 years) Collaboration Ongoing Image -->
             <apex:image height="60" 
             width="1010" 
